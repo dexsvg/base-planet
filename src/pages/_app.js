@@ -1,5 +1,7 @@
 import { ThirdwebProvider, coinbaseWallet, metamaskWallet, okxWallet } from "@thirdweb-dev/react";
 import { Base } from "@thirdweb-dev/chains";
+import Head from "next/head";
+import "../styles/globals.css"; // Menggunakan jalur relatif yang super aman
 
 export default function App({ Component, pageProps }) {
   return (
@@ -12,8 +14,10 @@ export default function App({ Component, pageProps }) {
         metamaskWallet(),
       ]}
     >
+      <Head>
+        <meta name="google" content="notranslate" />
+      </Head>
       <Component {...pageProps} />
     </ThirdwebProvider>
   );
 }
-

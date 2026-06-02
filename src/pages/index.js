@@ -1,3 +1,4 @@
+import "../styles/globals.css";
 import React, { useState } from 'react';
 import { ConnectWallet } from "@thirdweb-dev/react";
 

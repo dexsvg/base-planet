@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ConnectWallet, useAddress, useContract, Web3Button } from "@thirdweb-dev/react";
-import { ethers } from "ethers"; // <-- Ini buat memperbaiki error parseEther
 import Head from "next/head";
 
 const PROPERTIES = [
@@ -20,7 +19,7 @@ const PROPERTIES = [
     name: "Cyberpunk Space Station", 
     sector: "Primary Systems", 
     specs: "Beds | Baths | SqFt Sq Ft | Primary Systems", 
-    price: "2.5", 
+    price: "0.5", 
     tag: "LUXURY", 
     image: "/assets/station.jpg",
     coordinates: "N-CIT-9912 // NEON GRID",
@@ -30,7 +29,7 @@ const PROPERTIES = [
     id: 3, 
     name: "Luxury Starship Hangar", 
     sector: "Primary Systems", 
-    specs: "Beds | Baths | Sq10 Sq Ft | Surface Area (km²)", 
+    specs: "Bar | Playground | Sq10 Sq Ft | Surface Area (km²)", 
     price: "0.25", 
     tag: "LIQUID", 
     image: "/assets/hangar.jpeg",
@@ -63,7 +62,7 @@ const PROPERTIES = [
     id: 6, 
     name: "Sprawling Ice Planet", 
     sector: "Primary Systems", 
-    specs: "Beds | Bath | SqF5 Sq Ft | Asset Type", 
+    specs: "Cold | full ice | SqF5 Sq Ft | Asset Type", 
     price: "0.25", 
     tag: "HYDRO", 
     image: "/assets/ice-planet.jpg",
@@ -72,7 +71,7 @@ const PROPERTIES = [
   }
 ];
 
-// GANTI TEKS DI BAWAH INI DENGAN ALAMAT KONTRAK LU SENDIRI BRO:
+// GANTI DENGAN ALAMAT KONTRAK LU SENDIRI BRO:
 const MY_CONTRACT_ADDRESS = "0x263043098927A76cA8370363F6B815f34E716851"; 
 
 export default function Home() {
@@ -163,4 +162,42 @@ export default function Home() {
                 <h3 className="text-xl font-bold text-slate-900">{selectedPlanet.name}</h3>
                 <span className="bg-blue-100 text-blue-800 text-[9px] font-bold px-2.5 py-0.5 rounded-full">{selectedPlanet.tag}</span>
               </div>
-              <p className="text
+              <p className="text-xs text-slate-400 mb-4">{selectedPlanet.sector}</p>
+              
+              <p className="text-xs text-slate-600 bg-slate-50 p-4 rounded-lg border border-slate-100 mb-4 leading-relaxed">
+                {selectedPlanet.desc}
+              </p>
+              
+              <div className="text-[10px] text-slate-500 font-mono mb-6 border-b border-slate-100 pb-3">
+                {selectedPlanet.specs}
+              </div>
+              
+              <div className="flex justify-between items-center pt-2">
+                <div>
+                  <p className="text-[9px] text-slate-400 uppercase font-bold tracking-wider">Asset Valuation</p>
+                  <p className="text-xl font-bold text-emerald-600">{selectedPlanet.price} ETH</p>
+                </div>
+                
+                {/* AMAN: Menggunakan passing value BigInt murni bawaan Web3 SDK tanpa impor ethers eksternal */}
+                <Web3Button
+                  contractAddress={MY_CONTRACT_ADDRESS}
+                  action={async (contract) => {
+                    await contract.call("mint", [selectedPlanet.id], {
+                      value: (BigInt(parseFloat(selectedPlanet.price) * 10 ** 18)).toString(),
+                    });
+                  }}
+                  onSuccess={() => alert("Selamat, NFT Properti Berhasil di-Minting!")}
+                  onError={(error) => alert(`Transaksi gagal: ${error.message}`)}
+                  className="!bg-emerald-500 hover:!bg-emerald-600 !text-white !text-xs !font-bold !px-6 !py-3 !rounded-lg !uppercase !tracking-wide"
+                >
+                  Mint / Buy Asset
+                </Web3Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+            }
+        

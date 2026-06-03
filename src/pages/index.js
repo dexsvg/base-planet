@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ConnectWallet, useAddress, Web3Button } from "@thirdweb-dev/react";
-import { utils } from "ethers"; // <-- Kita impor ini agar konversi harga aman dan resmi
 import Head from "next/head";
 
 const PROPERTIES = [
@@ -93,13 +92,12 @@ export default function Home() {
                   <p className="text-lg font-bold text-emerald-600">{selectedPlanet.price} ETH</p>
                 </div>
 
-                {/* TOMBOL MINTING WEB3 REVISI AMAN */}
+                {/* TRICK PALING AMAN: Mengirim value dengan mem-parsing angka string langsung ke fungsi overloads SDK */}
                 <Web3Button
                   contractAddress={MY_CONTRACT_ADDRESS}
                   action={async (contract) => {
-                    // Menggunakan utils.parseEther bawaan yang ramah dengan bundle Next.js/Vercel
                     await contract.call("mint", [selectedPlanet.id], {
-                      value: utils.parseEther(selectedPlanet.price).toString(),
+                      value: contract.chainId === 8453 ? (parseFloat(selectedPlanet.price) * 1e18).toString() : "150000000000000000",
                     });
                   }}
                   onSuccess={() => alert("Selamat! Transaksi minting berhasil ditransmisikan.")}
@@ -115,4 +113,5 @@ export default function Home() {
       )}
     </div>
   );
-                    }
+        }
+  

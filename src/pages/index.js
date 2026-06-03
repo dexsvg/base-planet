@@ -12,6 +12,8 @@ const PROPERTIES = [
 ];
 
 export default function Home() {
+    const [selectedPlanet, setSelectedPlanet] = useState(null);
+  
   const [search, setSearch] = useState("");
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
@@ -54,6 +56,31 @@ export default function Home() {
                 <div className="flex justify-between items-center mt-4">
                   <span className="text-xs font-bold text-emerald-600">{item.price}</span>
                   <button className="bg-blue-500 text-white text-[10px] font-bold px-4 py-1.5 rounded uppercase">Detail</button>
+                          {/* POPUP MODAL DETAIL (Tinggal selipkan di bagian bawah sebelum penutup </div>) */}
+      {selectedPlanet && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 text-left">
+            <div className="h-48 relative bg-slate-900">
+              <img src={selectedPlanet.image} alt={selectedPlanet.name} className="w-full h-full object-cover" />
+              <button onClick={() => setSelectedPlanet(null)} className="absolute top-3 right-3 bg-black bg-opacity-50 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold">✕</button>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-slate-900">{selectedPlanet.name}</h3>
+              <p className="text-xs text-slate-400 mb-4">{selectedPlanet.sector}</p>
+              <p className="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 mb-4">Properti virtual masa depan di jaringan Base Network. Siap di-minting menggunakan smart contract.</p>
+              <div className="text-[10px] text-slate-500 font-mono mb-6">{selectedPlanet.specs}</div>
+              <div className="flex justify-between items-center border-t border-slate-100 pt-4">
+                <div>
+                  <p className="text-[10px] text-slate-400 uppercase font-bold">Price</p>
+                  <p className="text-lg font-bold text-emerald-600">{selectedPlanet.price}</p>
+                </div>
+                <button onClick={() => alert('Fitur transaksi sedang disiapkan!')} className="bg-emerald-500 text-white text-xs font-bold px-6 py-2.5 rounded-lg uppercase">Mint / Buy Asset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+        
                 </div>
               </div>
             </div>

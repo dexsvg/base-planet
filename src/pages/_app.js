@@ -1,4 +1,4 @@
-import { ThirdwebProvider, coinbaseWallet, metamaskWallet, okxWallet } from "@thirdweb-dev/react";
+import { ThirdwebProvider, coinbaseWallet, metamaskWallet, okxWallet, walletConnect } from "@thirdweb-dev/react";
 import { Base } from "@thirdweb-dev/chains";
 import Head from "next/head";
 

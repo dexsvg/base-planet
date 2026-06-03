@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { ConnectWallet, useAddress, Web3Button } from "@thirdweb-dev/react";
+import { utils } from "ethers"; // <-- Kita impor ini agar konversi harga aman dan resmi
 import Head from "next/head";
 
 const PROPERTIES = [
-  { id: 1, name: "Tropical Exo-Planet", sector: "Primary Systems", specs: "summer | storm | Sq10 Sq Ft | Habitable Biomes", price: "0.15", tag: "FEATURED", image: "/assets/exo-planet.jpg" },
+  { id: 1, name: "Tropical Exo-Planet", sector: "Primary Systems", specs: "Beds | Baths | Sq10 Sq Ft | Habitable Biomes", price: "0.15", tag: "FEATURED", image: "/assets/exo-planet.jpg" },
   { id: 2, name: "Cyberpunk Space Station", sector: "Primary Systems", specs: "Beds | Baths | SqFt Sq Ft | Primary Systems", price: "0.5", tag: "LUXURY", image: "/assets/station.jpg" },
   { id: 3, name: "Luxury Starship Hangar", sector: "Primary Systems", specs: "Bar | Playground | Sq10 Sq Ft | Surface Area (km²)", price: "0.25", tag: "LIQUID", image: "/assets/hangar.jpeg" },
   { id: 4, name: "Family Home For Space", sector: "Primary Systems", specs: "Beds | Baths | Sq10 Sq Ft | Family Biome", price: "0.5", tag: "LOUNGE", image: "/assets/family-home.jpeg" }, 
@@ -14,7 +15,7 @@ const PROPERTIES = [
 const MY_CONTRACT_ADDRESS = "0x263043098927A76cA8370363F6B815f34E716851"; 
 
 export default function Home() {
-  const address = useAddress(); // Untuk ngecek apakah user sudah connect wallet
+  const address = useAddress();
   const [selectedPlanet, setSelectedPlanet] = useState(null);
 
   return (
@@ -92,13 +93,13 @@ export default function Home() {
                   <p className="text-lg font-bold text-emerald-600">{selectedPlanet.price} ETH</p>
                 </div>
 
-                {/* TOMBOL MINTING WEB3 OTOMATIS */}
+                {/* TOMBOL MINTING WEB3 REVISI AMAN */}
                 <Web3Button
                   contractAddress={MY_CONTRACT_ADDRESS}
                   action={async (contract) => {
-                    // Memanggil fungsi mint di contract lo dengan parameter ID planet dan mengirimkan value ETH
+                    // Menggunakan utils.parseEther bawaan yang ramah dengan bundle Next.js/Vercel
                     await contract.call("mint", [selectedPlanet.id], {
-                      value: (BigInt(Math.floor(parseFloat(selectedPlanet.price) * 100)) * 10n ** 16n).toString(),
+                      value: utils.parseEther(selectedPlanet.price).toString(),
                     });
                   }}
                   onSuccess={() => alert("Selamat! Transaksi minting berhasil ditransmisikan.")}
@@ -114,5 +115,4 @@ export default function Home() {
       )}
     </div>
   );
-    }
-            
+                    }

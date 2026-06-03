@@ -5,7 +5,7 @@ import Head from "next/head";
 const PROPERTIES = [
   { id: 1, name: "Tropical Exo-Planet", sector: "Primary Systems", specs: "Beds | Baths | Sq10 Sq Ft | Habitable Biomes", price: "0.15 ETH", tag: "FEATURED", image: "/assets/exo-planet.jpg" },
   { id: 2, name: "Cyberpunk Space Station", sector: "Primary Systems", specs: "Beds | Baths | SqFt Sq Ft | Primary Systems", price: " ETH", tag: "LUXURY", image: "/assets/station.jpg" },
-  { id: 3, name: "Luxury Starship Hangar", sector: "Primary Systems", specs: "Beds | Baths | Sq10 Sq Ft | Surface Area (km²)", price: "0.25 ETH", tag: "LIQUID", image: "/assets/sangar.jpeg" },
+  { id: 3, name: "Luxury Starship Hangar", sector: "Primary Systems", specs: "Beds | Baths | Sq10 Sq Ft | Surface Area (km²)", price: "0.25 ETH", tag: "LIQUID", image: "/assets/hangar.jpeg" },
   { id: 4, name: "Family Home For Space", sector: "Primary Systems", specs: "Beds | Baths | Sq10 Sq Ft | Family Biome", price: "0.5 ETH", tag: "LOUNGE", image: "/assets/home.jpg" },
   { id: 5, name: "Gangeoses-Instrose Plot", sector: "Primary Systems", specs: "Beds | Baths | SqFt Sq Ft | Surface Area (km²)", price: "0.5 ETH", tag: "LUXURE", image: "/assets/plot.jpeg" },
   { id: 6, name: "Sprawling Ice Planet", sector: "Primary Systems", specs: "Beds | Bath | SqF5 Sq Ft | Asset Type", price: "0.7 ETH", tag: "HYDRO", image: "/assets/ice-planet.jpg" }

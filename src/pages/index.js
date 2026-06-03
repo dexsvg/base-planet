@@ -92,12 +92,13 @@ export default function Home() {
                   <p className="text-lg font-bold text-emerald-600">{selectedPlanet.price} ETH</p>
                 </div>
 
-                {/* TRICK PALING AMAN: Mengirim value dengan mem-parsing angka string langsung ke fungsi overloads SDK */}
                 <Web3Button
                   contractAddress={MY_CONTRACT_ADDRESS}
                   action={async (contract) => {
+                    // Kalkulasi string manual tanpa library ethers agar tidak bentrok di browser
+                    const rawValue = (parseFloat(selectedPlanet.price) * 1000000000000000000 / 1000000000000000000).toString();
                     await contract.call("mint", [selectedPlanet.id], {
-                      value: contract.chainId === 8453 ? (parseFloat(selectedPlanet.price) * 1e18).toString() : "150000000000000000",
+                      value: (parseFloat(rawValue) * 10 ** 18).toString(),
                     });
                   }}
                   onSuccess={() => alert("Selamat! Transaksi minting berhasil ditransmisikan.")}
@@ -114,4 +115,4 @@ export default function Home() {
     </div>
   );
         }
-  
+        

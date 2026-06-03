@@ -1,6 +1,7 @@
 import { ThirdwebProvider, coinbaseWallet, metamaskWallet, okxWallet, walletConnect } from "@thirdweb-dev/react";
 import { Base } from "@thirdweb-dev/chains";
 import Head from "next/head";
+import "@/styles/globals.css";
 
 export default function App({ Component, pageProps }) {
   return (
@@ -11,6 +12,7 @@ export default function App({ Component, pageProps }) {
         coinbaseWallet({ recommended: true }),
         okxWallet(),
         metamaskWallet(),
+        walletConnect(), // <-- WalletConnect resmi aktif di sini bro!
       ]}
     >
       <Head>
@@ -19,4 +21,5 @@ export default function App({ Component, pageProps }) {
       <Component {...pageProps} />
     </ThirdwebProvider>
   );
-}
+          }
+        

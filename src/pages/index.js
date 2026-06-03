@@ -71,7 +71,6 @@ const PROPERTIES = [
   }
 ];
 
-// GANTI DENGAN ALAMAT KONTRAK LU SENDIRI BRO:
 const MY_CONTRACT_ADDRESS = "0x263043098927A76cA8370363F6B815f34E716851"; 
 
 export default function Home() {
@@ -178,12 +177,12 @@ export default function Home() {
                   <p className="text-xl font-bold text-emerald-600">{selectedPlanet.price} ETH</p>
                 </div>
                 
-                {/* AMAN: Menggunakan passing value BigInt murni bawaan Web3 SDK tanpa impor ethers eksternal */}
+                {/* LOGIKA VALUE MINTING TANPA DEPENDENSI EKSTERNAL */}
                 <Web3Button
                   contractAddress={MY_CONTRACT_ADDRESS}
                   action={async (contract) => {
                     await contract.call("mint", [selectedPlanet.id], {
-                      value: (BigInt(parseFloat(selectedPlanet.price) * 10 ** 18)).toString(),
+                      value: (BigInt(Math.floor(parseFloat(selectedPlanet.price) * 100)) * 10n ** 16n).toString(),
                     });
                   }}
                   onSuccess={() => alert("Selamat, NFT Properti Berhasil di-Minting!")}
@@ -199,5 +198,5 @@ export default function Home() {
       )}
     </div>
   );
-            }
+        }
         

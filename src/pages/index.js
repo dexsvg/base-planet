@@ -1,3 +1,7 @@
+import './globals.css'; // Sesuaikan namanya, kalau nama filenya index.css ganti jadi './index.css'
+import React, { useState } from 'react';
+// ... sisa kode yang lain tetep sama ...
+
 import React, { useState } from 'react';
 import { 
   ThirdwebProvider, 

@@ -43,7 +43,7 @@ export default function Home() {
         <h1 className="text-2xl md:text-4xl font-light leading-tight max-w-2xl mx-auto mb-6">Acquire exceptional virtual planets, starships, and habitats on the Base Network.</h1>
       </div>
 
-      {/* GRID ITEM */}
+      {/* GRID PORTFOLIO */}
       <main className="max-w-6xl mx-auto px-4 py-12 text-center">
         <h2 className="text-xl md:text-2xl font-bold text-slate-800 mb-8">Discover Our Curated Portfolios</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -73,7 +73,7 @@ export default function Home() {
         </div>
       </main>
 
-      {/* MODAL POPUP */}
+      {/* MODAL DETAIL POPUP */}
       {selectedPlanet && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-200 text-left">
@@ -92,7 +92,7 @@ export default function Home() {
                   <p className="text-lg font-bold text-emerald-600">{selectedPlanet.price} ETH</p>
                 </div>
 
-                {/* LOGIKA VALUE TRANSAKSI BERSIH DUKUNGAN PENUH THIRDWEB */}
+                {/* VERSI TERAMAN: Menggunakan parsing objek bawaan Thirdweb SDK */}
                 <Web3Button
                   contractAddress={MY_CONTRACT_ADDRESS}
                   action={async (contract) => {
@@ -113,5 +113,5 @@ export default function Home() {
       )}
     </div>
   );
-        }
-        
+    }
+    

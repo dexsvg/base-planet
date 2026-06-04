@@ -84,7 +84,7 @@ export default function Home() {
             <div className="p-6">
               <h3 className="text-xl font-bold text-slate-900">{selectedPlanet.name}</h3>
               <p className="text-xs text-slate-400 mb-4">{selectedPlanet.sector}</p>
-              <p className="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 mb-4">Properti virtual masa depan di jaringan Base Network. Siap di-minting menggunakan smart contract.</p>
+              <p className="text-xs text-slate-600 bg-slate-50 p-3 rounded-lg border border-slate-100 mb-4">Future virtual properties on the base network.</p>
               <div className="text-[10px] text-slate-500 font-mono mb-6">{selectedPlanet.specs}</div>
               <div className="flex justify-between items-center border-t border-slate-100 pt-4">
                 <div>

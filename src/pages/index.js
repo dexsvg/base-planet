@@ -11,7 +11,7 @@ const PROPERTIES = [
   { id: 6, name: "Sprawling Ice Planet", sector: "Primary Systems", specs: "Cold | full ice | SqF5 Sq Ft | Asset Type", price: "0.25", tag: "HYDRO", image: "/assets/ice-planet.jpg" }
 ];
 
-const MY_CONTRACT_ADDRESS = "0x263043098927A76cA8370363F6B815f34E716851"; 
+const MY_CONTRACT_ADDRESS = 0x263043098927A76cA8370363F6B815f34E716851; 
 
 export default function Home() {
   const address = useAddress();
